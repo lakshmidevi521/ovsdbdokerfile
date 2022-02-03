@@ -1,0 +1,3 @@
+FROM postgres
+ENV POSTGRES_DB=onlinevoting
+ENV POSTGRES_PASSWORD=Lakshmi@21
