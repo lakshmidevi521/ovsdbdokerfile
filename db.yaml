@@ -1,0 +1,41 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "ovsdbdockerfile"
+  namespace: "default"
+  labels:
+    app: "ovsdbdockerfile"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "ovsdbdockerfile"
+  template:
+    metadata:
+      labels:
+        app: "ovsdbdockerfile"
+    spec:
+      containers:
+      - name: "ovsdbdokerfile-sha256-1"
+        image: "gcr.io/gcpdemo-334906/github.com/lakshmidevi521/ovsdbdokerfile@sha256:4da71fad33a1822e163c04798b5229c076b1a6225baa229a132dcbbe6b3c7ab7"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "ovsdbdockerfile-hpa-yawx"
+  namespace: "default"
+  labels:
+    app: "ovsdbdockerfile"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "ovsdbdockerfile"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
