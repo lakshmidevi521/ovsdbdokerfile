@@ -7,7 +7,7 @@ metadata:
   labels:
     app: "ovsdbdockerfile"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: "ovsdbdockerfile"
@@ -18,12 +18,12 @@ spec:
     spec:
       containers:
       - name: "ovsdbdokerfile-sha256-1"
-        image: "gcr.io/gcpdemo-334906/github.com/lakshmidevi521/ovsdbdokerfile@sha256:4da71fad33a1822e163c04798b5229c076b1a6225baa229a132dcbbe6b3c7ab7"
+        image: "gcr.io/gcpdemo-334906/github.com/lakshmidevi521/ovsdbdokerfile@sha256:0f6fa4765f4512470eff425900218caf66ef7386d9da2194ed160d1935babd1e"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "ovsdbdockerfile-hpa-yawx"
+  name: "ovsdbdockerfile-hpa-wtig"
   namespace: "default"
   labels:
     app: "ovsdbdockerfile"
@@ -39,3 +39,4 @@ spec:
     resource:
       name: "cpu"
       targetAverageUtilization: 80
+
